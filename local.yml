@@ -1,0 +1,27 @@
+- name: Agent installer
+  hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+  - name: Create custom fact directory
+    file:
+      path: "/etc/ansible/facts.d"
+      state: "directory"  
+  - name: Creating custom fact file
+    copy:
+      dest: "/etc/ansible/facts.d/controlpanel.fact"
+      mode: 0755
+      content: |
+        #!/bin/bash
+        CPANEL=`cat /usr/local/cpanel/version`
+        PLESK=`cat /usr/local/psa/version`
+        echo "[cpanel]"
+        echo "version=${CPANEL}"
+        echo "[plesk]"
+        echo "version=${PLESK}"
+  - name: Creates an entry "10 11 * * * ansible-pull -U https://github.com/uzzikie/ansible-agent  > /dev/null"
+    ansible.builtin.cron:
+      name: "check dirs"
+      minute: "10"
+      hour: "11"
+      job: "ansible-pull -U https://github.com/uzzikie/ansible-pull > /dev/null"
