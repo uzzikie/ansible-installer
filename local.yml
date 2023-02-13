@@ -24,4 +24,4 @@
       name: "check dirs"
       minute: "10"
       hour: "11"
-      job: "ansible-pull -U https://github.com/uzzikie/ansible-pull > /dev/null"
+      job: "ansible-pull -U https://github.com/uzzikie/ansible-agent > /dev/null"
