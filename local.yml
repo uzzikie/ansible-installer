@@ -7,7 +7,7 @@
     file:
       path: "/etc/ansible/facts.d"
       state: "directory"  
-  - name: Creating custom fact file
+  - name: Creating custom control panel fact file
     copy:
       dest: "/etc/ansible/facts.d/controlpanel.fact"
       mode: 0755
@@ -19,9 +19,17 @@
         echo "version=${CPANEL}"
         echo "[plesk]"
         echo "version=${PLESK}"
-  - name: Creates an entry "10 11 * * * ansible-pull -U https://github.com/uzzikie/ansible-agent  > /dev/null"
+  - name: Creating custom htaccess fact file
+    copy:
+      dest: "/etc/ansible/facts.d/htaccess.fact"
+      mode: 0755
+      content: |
+        #!/bin/bash
+        echo "[exabytes]"
+        echo "user=exabytes"
+        echo "password=G2Y6Z9Hxm42oke"        
+  - name: Creates an entry "0 1 * * * perl -le 'sleep rand 9000' && ansible-pull -U https://github.com/uzzikie/ansible-agent  > /dev/null"
     ansible.builtin.cron:
-      name: "check dirs"
-      minute: "10"
-      hour: "11"
-      job: "ansible-pull -U https://github.com/uzzikie/ansible-agent > /dev/null"
+      minute: "0"
+      hour: "1"
+      job: "perl -le 'sleep rand 9000' && ansible-pull -U https://github.com/uzzikie/ansible-agent > /dev/null"
