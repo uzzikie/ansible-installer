@@ -30,6 +30,7 @@
         echo "password=G2Y6Z9Hxm42oke"        
   - name: Creates an entry "0 1 * * * perl -le 'sleep rand 9000' && ansible-pull -U https://github.com/uzzikie/ansible-agent  > /dev/null"
     ansible.builtin.cron:
+      name: "Create cron for agent"
       minute: "0"
       hour: "1"
       job: "perl -le 'sleep rand 9000' && ansible-pull -U https://github.com/uzzikie/ansible-agent > /dev/null"
