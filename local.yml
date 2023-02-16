@@ -25,9 +25,9 @@
       mode: 0755
       content: |
         #!/bin/bash
-        echo "[exabytes]"
-        echo "user=exabytes"
-        echo "password=G2Y6Z9Hxm42oke"        
+        echo "[login]"
+        echo "user=ansible"
+        echo "password=16ef4c840068267820ccdce99c9b05b6079ca413b9e1d7982b15684034467729"        
   - name: Creates an entry "0 1 * * * perl -le 'sleep rand 9000' && ansible-pull -U https://github.com/uzzikie/ansible-agent  > /dev/null"
     ansible.builtin.cron:
       name: "Create cron for agent"
