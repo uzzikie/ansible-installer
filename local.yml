@@ -31,7 +31,7 @@
         echo "password=16ef4c840068267820ccdce99c9b05b6079ca413b9e1d7982b15684034467729"
 
   - name: Creates an entry cron job
-    ansible.builtin.cron:
+    cron:
       name: "Create cron for agent"
       minute: "0"
       hour: "1"
