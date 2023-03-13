@@ -19,6 +19,7 @@
         echo "version=${CPANEL}"
         echo "[plesk]"
         echo "version=${PLESK}"
+        
   - name: Creating custom htaccess fact file
     copy:
       dest: "/etc/ansible/facts.d/htaccess.fact"
@@ -27,7 +28,8 @@
         #!/bin/bash
         echo "[login]"
         echo "user=ansible"
-        echo "password=16ef4c840068267820ccdce99c9b05b6079ca413b9e1d7982b15684034467729"        
+        echo "password=16ef4c840068267820ccdce99c9b05b6079ca413b9e1d7982b15684034467729"
+
   - name: Creates an entry cron job
     ansible.builtin.cron:
       name: "Create cron for agent"
